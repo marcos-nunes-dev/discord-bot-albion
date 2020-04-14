@@ -2,28 +2,30 @@ const axios = require("axios");
 
 exports.run = ({ Discord, client }) => {
   const hook = new Discord.WebhookClient(
-    "699405231867297834",
-    "L4dgAdX_DdWjRlGxNZy_MSLU9Zr86b1HRzZr37K0L0YJ4V8AI7IvqXvKxw-nzMf4W7Z6"
+    process.env.KILLBOARD_HOOK_ID,
+    process.env.KILLBOARD_HOOK_TOKEN
   );
-  setInterval(() => {
-    axios
-      .get(
-        "http://gameinfo.albiononline.com/api/gameinfo/events?&offset=0&limit=10"
-      )
-      .then(function (response) {
-        response.data.forEach((event) => {
-          if (
-            event.Killer.GuildName === "Octopus Nightmare" ||
-            event.Victim.GuildName === "Octopus Nightmare"
-          ) {
-            hook.send(JSON.stringify(event));
-          } else {
-            console.log("nenhum de nos");
-          }
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, 120000);
+
+  setInterval(() => {}, 30000000);
+  axios
+    .get(
+      "http://gameinfo.albiononline.com/api/gameinfo/events?&offset=0&limit=10"
+    )
+    .then(function (response) {
+      // response.data.forEach((event) => {
+      //   if (event.Killer.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
+      //     hook.send(`${killer.Name} explodiu ${victim.Name}`);
+      //   } else if (event.Victim.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
+      //     hook.send(`${victim.Name} foi ownado por ${killer.Name}`);
+      //   }
+      // });
+      hook.send(
+        `> Vítima - ${response.data[0].Victim.Name} | IP:${response.data[0].Victim.AverageItemPower} | PKFama:${response.data[0].Victim.KillFame}`
+      );
+      hook.send("");
+      console.log(response.data[0].Killer.Equipment.MainHand);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };

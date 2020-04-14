@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 console.log("Conectando...");
 
 // Instance Discord
@@ -11,7 +13,8 @@ const Discord = require("discord.js"),
     disableEveryone: true,
     messageSweepInterval: 1680,
   });
-(config = require("./config.json")), (token = config.token);
+(config = { token: process.env.DISCORD_TOKEN, prefix: process.env.PREFIX }),
+  (token = process.env.DISCORD_TOKEN);
 
 // Command Prefix
 let prefix = config.prefix;
@@ -46,11 +49,13 @@ client.on("ready", () => {
     if (err.code == "MODULE_NOT_FOUND") return;
     console.error(err);
   }
+  
+  console.log("Iniciado");
 });
 
 // Run commands from commands folder
 client.on("message", (message) => {
-    // ignore DM
+  // ignore DM
   if (message.channel.type == "dm") return;
   // ignore self and other bots
   if (message.author.bot) return;
