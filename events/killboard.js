@@ -1,4 +1,6 @@
 const axios = require("axios");
+const renderV = require("../utils/renderVictim");
+const renderKiller = require("../utils/renderKiller");
 
 exports.run = ({ Discord, client }) => {
   const hook = new Discord.WebhookClient(
@@ -14,16 +16,20 @@ exports.run = ({ Discord, client }) => {
     .then(function (response) {
       // response.data.forEach((event) => {
       //   if (event.Killer.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
-      //     hook.send(`${killer.Name} explodiu ${victim.Name}`);
-      //   } else if (event.Victim.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
-      //     hook.send(`${victim.Name} foi ownado por ${killer.Name}`);
+      //     // Member guild was the killer
+      //     hook.send(renderKiller(event));
+      //   } else if (
+      //     event.Victim.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID
+      //   ) {
+      //     // Member guild was the victim
+      //     hook.send(renderVictim(event));
       //   }
       // });
-      hook.send(
-        `> Vítima - ${response.data[0].Victim.Name} | IP:${response.data[0].Victim.AverageItemPower} | PKFama:${response.data[0].Victim.KillFame}`
-      );
-      hook.send("");
-      console.log(response.data[0].Killer.Equipment.MainHand);
+
+      // test purpose
+      renderV.renderVictim(Discord, response.data[0]).then((resolve) => {
+        hook.send(resolve);
+      });
     })
     .catch(function (error) {
       console.log(error);
