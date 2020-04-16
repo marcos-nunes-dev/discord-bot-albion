@@ -1,6 +1,6 @@
 const Canvas = require('canvas');
 
-exports.renderKiller = async (Discord, data) => {
+exports.renderAlliance = async (Discord, data) => {
 	return new Promise(async (resolve, reject) => {
 		const canvas = Canvas.createCanvas(1200, 732);
 		const ctx = canvas.getContext('2d');
@@ -119,18 +119,32 @@ exports.renderKiller = async (Discord, data) => {
 		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'killboard.png');
 
 		const embed = new Discord.MessageEmbed()
-			.setColor('#4ceb34')
+			.setColor('#e0ce07')
 			.setAuthor(
 				`Clique aqui para mais informações`,
 				'https://img.utdstc.com/icons/albion-online.png:225',
 				`https://albiononline.com/pt/killboard/kill/${data.EventId}`
 			)
-			.setTitle('💀 Um Membro da Guilda está em ação.')
+			.setTitle('💀 Membro da Alliance em batalha.')
 			.setDescription(
-				`O ${data.Killer.Name} assassinou em ${data.KillArea} e pegou ${data.Victim.Inventory.length} Itens na Bag do meliante.`
+				`O ${data.Victim.Name} foi morto pelo ${data.Killer.Name} em uma ${data.KillArea} com ${data.Victim.Inventory.length} Itens na Bag.`
 			)
-			.addField('__**Assassino:**__', `⚔️ ${data.Killer.Name} (**IP** ${parseInt(data.Killer.AverageItemPower)})`, true)
-			.addField('__**Vítima:**__', `🩸 ${data.Victim.Name} (**IP** ${parseInt(data.Victim.AverageItemPower)})`, true)
+			.addField(
+				'__**Assassino:**__',
+				`⚔️ ${data.Killer.Name}(**IP** ${parseInt(data.Killer.AverageItemPower)}) - ` +
+					data.Killer.AllianceName &&
+					`[${data.Killer.AllianceName}]` + data.Killer.AllianceName &&
+					`${data.Killer.GuildName}`,
+				true
+			)
+			.addField(
+				'__**Vítima:**__',
+				`🩸 ${data.Victim.Name}(**IP** ${parseInt(data.Victim.AverageItemPower)}) - ` +
+					data.Victim.AllianceName &&
+					`[${data.Victim.AllianceName}]` + data.Victim.AllianceName &&
+					`${data.Victim.GuildName}`,
+				true
+			)
 			.setFooter(`O ${data.Killer.Name} recebeu ajuda de mais ${data.numberOfParticipants - 1} participante(s).`)
 			.setTimestamp(data.TimeStamp);
 		resolve({ embed, attachment });
