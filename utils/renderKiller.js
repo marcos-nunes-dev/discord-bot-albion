@@ -127,7 +127,7 @@ exports.renderKiller = async (Discord, data) => {
 			)
 			.setTitle('💀 Um Membro da Guilda está em ação.')
 			.setDescription(
-				`O ${data.Killer.Name} assassinou em ${data.KillArea} e pegou ${data.Victim.Inventory.length} Itens na Bag do meliante.`
+				`O ${data.Killer.Name} assassinou em ${data.KillArea}.`
 			)
 			.addField('__**Assassino:**__', `⚔️ ${data.Killer.Name} (**IP** ${parseInt(data.Killer.AverageItemPower)})`, true)
 			.addField('__**Vítima:**__', `🩸 ${data.Victim.Name} (**IP** ${parseInt(data.Victim.AverageItemPower)})`, true)

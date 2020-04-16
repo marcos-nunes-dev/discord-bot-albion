@@ -127,7 +127,7 @@ exports.renderVictim = async (Discord, data) => {
 			)
 			.setTitle('💀 Um Membro da Guilda foi de base.')
 			.setDescription(
-				`O ${data.Victim.Name} foi morto em ${data.KillArea} com ${data.Victim.Inventory.length} Itens na Bag.`
+				`O ${data.Victim.Name} foi morto em ${data.KillArea}.`
 			)
 			.addField(
 				'__**Assassino:**__',

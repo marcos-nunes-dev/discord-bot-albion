@@ -22,6 +22,7 @@ exports.run = ({ Discord, client }) => {
 							});
 						});
 					} else if (event.Victim.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
+						// Member guild was the victim
 						renderV.renderVictim(Discord, event).then(async (resolve) => {
 							await hook.send(resolve.attachment).then(() => {
 								hook.send(resolve.embed);
@@ -31,6 +32,7 @@ exports.run = ({ Discord, client }) => {
 						event.Victim.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID ||
 						event.Killer.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID
 					) {
+						// alliance event
 						renderA.renderAlliance(Discord, event).then(async (resolve) => {
 							await hook.send(resolve.attachment).then(() => {
 								hook.send(resolve.embed);
