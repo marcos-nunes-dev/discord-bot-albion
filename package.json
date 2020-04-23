@@ -4,7 +4,8 @@
 	"description": "oct-bot",
 	"main": "index.js",
 	"engines": {
-		"node": "13.12.0"
+    "node": "13.12.x",
+    "yarn": "1.x"
 	},
 	"scripts": {
 		"start": "nodemon index.js"
