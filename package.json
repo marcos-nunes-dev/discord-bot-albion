@@ -1,18 +1,21 @@
 {
-  "name": "octopus-bot",
-  "version": "1.0.0",
-  "description": "oct-bot",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
-  "author": "Marcos Nunes",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "canvas": "^2.6.1",
-    "discord.js": "^12.1.1",
-    "dotenv": "^8.2.0",
-    "nodemon": "^2.0.3"
-  }
+	"name": "octopus-bot",
+	"version": "1.0.0",
+	"description": "oct-bot",
+	"main": "index.js",
+	"engines": {
+		"node": "13.12.0"
+	},
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"author": "Marcos Nunes",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.19.2",
+		"canvas": "^2.6.1",
+		"discord.js": "^12.1.1",
+		"dotenv": "^8.2.0",
+		"nodemon": "^2.0.3"
+	}
 }
