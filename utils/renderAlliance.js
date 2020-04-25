@@ -150,13 +150,11 @@ exports.renderAlliance = async (Discord, data) => {
 				`https://albiononline.com/pt/killboard/kill/${data.EventId}`
 			)
 			.setTitle('💀 Membro da Alliance em batalha.')
-			.setDescription(
-				`O ${data.Victim.Name} foi morto pelo ${data.Killer.Name} em uma ${data.KillArea}`
-			)
+			.setDescription(`O ${data.Victim.Name} foi morto pelo ${data.Killer.Name} em uma ${data.KillArea}`)
 			.addField('__**Assassino:**__', renderComposedKillerName(data), true)
 			.addField('__**Vítima:**__', renderComposedVictimName(data), true)
 			.setFooter(`O ${data.Killer.Name} recebeu ajuda de mais ${data.numberOfParticipants - 1} participante(s).`)
 			.setTimestamp(data.TimeStamp);
-		resolve({ embed, attachment: '.' });
+		resolve(embed);
 	});
 };

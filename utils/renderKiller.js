@@ -126,11 +126,17 @@ exports.renderKiller = async (Discord, data) => {
 				`https://albiononline.com/pt/killboard/kill/${data.EventId}`
 			)
 			.setTitle('💀 Um Membro da Guilda está em ação.')
-			.setDescription(
-				`O ${data.Killer.Name} assassinou em ${data.KillArea}.`
+			.setDescription(`O ${data.Killer.Name} assassinou em ${data.KillArea}.`)
+			.addField(
+				'__**Assassino:**__',
+				`⚔️ ${data.Killer.Name} (**IP** ${parseInt(data.Killer.AverageItemPower)})`,
+				true
 			)
-			.addField('__**Assassino:**__', `⚔️ ${data.Killer.Name} (**IP** ${parseInt(data.Killer.AverageItemPower)})`, true)
-			.addField('__**Vítima:**__', `🩸 ${data.Victim.Name} (**IP** ${parseInt(data.Victim.AverageItemPower)})`, true)
+			.addField(
+				'__**Vítima:**__',
+				`🩸 ${data.Victim.Name} (**IP** ${parseInt(data.Victim.AverageItemPower)})`,
+				true
+			)
 			.setFooter(`O ${data.Killer.Name} recebeu ajuda de mais ${data.numberOfParticipants - 1} participante(s).`)
 			.setTimestamp(data.TimeStamp);
 		resolve({ embed, attachment });
