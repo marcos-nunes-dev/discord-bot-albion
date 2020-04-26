@@ -42,16 +42,16 @@ exports.run = ({ Discord, client }) => {
 						event.Victim.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID ||
 						event.Killer.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID
 					) {
-						if (!AlreadyRendered.includes(event.EventId)) {
-							// Add Event to controller
-							AlreadyRendered.push(event.EventId);
-							// Member guild was the killer
-							renderA.renderAlliance(Discord, event).then((resolve) => {
-								Promise.all([hook.send(resolve)]).then(() => {
-									return;
-								});
-							});
-						}
+						// if (!AlreadyRendered.includes(event.EventId)) {
+						// 	// Add Event to controller
+						// 	AlreadyRendered.push(event.EventId);
+						// 	// Member guild was the killer
+						// 	renderA.renderAlliance(Discord, event).then((resolve) => {
+						// 		Promise.all([hook.send(resolve)]).then(() => {
+						// 			return;
+						// 		});
+						// 	});
+						// }
 					}
 				});
 			})
