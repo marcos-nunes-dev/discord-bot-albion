@@ -13,7 +13,7 @@ exports.run = ({ Discord, client }) => {
 	setInterval(() => {
 		console.log('fetch');
 		axios
-			.get('http://gameinfo.albiononline.com/api/gameinfo/events?&offset=0&limit=40')
+			.get('http://gameinfo.albiononline.com/api/gameinfo/events?&offset=0&limit=51')
 			.then((response) => {
 				response.data.map((event) => {
 					if (event.Killer.GuildId == process.env.KILLBOARD_GUILD_TRACK_ID) {
@@ -38,25 +38,27 @@ exports.run = ({ Discord, client }) => {
 								});
 							});
 						}
-					} else if (
-						event.Victim.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID ||
-						event.Killer.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID
-					) {
-						// if (!AlreadyRendered.includes(event.EventId)) {
-						// 	// Add Event to controller
-						// 	AlreadyRendered.push(event.EventId);
-						// 	// Member guild was the killer
-						// 	renderA.renderAlliance(Discord, event).then((resolve) => {
-						// 		Promise.all([hook.send(resolve)]).then(() => {
-						// 			return;
-						// 		});
-						// 	});
-						// }
 					}
+
+					// else if (
+					// 	event.Victim.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID ||
+					// 	event.Killer.AllianceId == process.env.KILLBOARD_ALLIANCE_TRACK_ID
+					// ) {
+					// if (!AlreadyRendered.includes(event.EventId)) {
+					// 	// Add Event to controller
+					// 	AlreadyRendered.push(event.EventId);
+					// 	// Member guild was the killer
+					// 	renderA.renderAlliance(Discord, event).then((resolve) => {
+					// 		Promise.all([hook.send(resolve)]).then(() => {
+					// 			return;
+					// 		});
+					// 	});
+					// }
+					// }
 				});
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
-	}, 60000);
+	}, 40000);
 };
